@@ -15,6 +15,7 @@ The repository contains the following code examples:
 - String Methods
 - File
 - SecureString
+- Collections and Data Structures
 
 ## License
 

@@ -1,1 +1,1 @@
-UiPathOrchestrator.msi /l*vx InstallerLog.txt
+UiPathOrchestrator.msi OUTPUT_PARAMETERS_FILE=InstallParameters.json /l*vx InstallerLogs.txt

@@ -1,0 +1,26 @@
+# Set the date range for a valid certificate within the specified period
+$startDate = Get-Date
+$endDate = $startDate.AddYears(10)
+
+# Create the certificate
+$ssc = New-SelfSignedCertificate -FriendlyName "TestingCertificate" -DnsName "rpa.domain.local" -NotBefore $startDate -NotAfter $endDate
+
+# Specify the folder path
+$folderPath = "C:\temp"
+
+# Check if the folder exists, if not, create it
+if (-not (Test-Path -Path $folderPath -PathType Container)) {
+    New-Item -Path $folderPath -ItemType Directory
+}
+
+# Open the store to add the new certificate
+$store = New-Object System.Security.Cryptography.X509Certificates.X509Store("Root", "LocalMachine")
+$store.Open("MaxAllowed")
+$store.Add($ssc)
+
+# Export the certificate as PFX
+$pass = ConvertTo-SecureString -String "myPass" -Force -AsPlainText
+Export-PfxCertificate -Cert $ssc -FilePath "$folderPath\testingCertificate.pfx" -Password $pass
+
+# Close the store
+$store.Close()

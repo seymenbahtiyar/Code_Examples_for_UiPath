@@ -23,6 +23,8 @@ Module Module1
         ' JSON çıktısını yazdır
         Console.WriteLine(jsonResult)
 
+        ' [{"ID":1,"Name":"John Doe","Age":30},{"ID":2,"Name":"Jane Smith","Age":25}]
+
         ' Konsol ekranında kalması için bekleyin
         Console.ReadLine()
     End Sub
